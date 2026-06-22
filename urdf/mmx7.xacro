@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mmx7">
+    <xacro:include filename="$(find kachaka_base_description)/urdf/kachaka_base.xacro" />
+    <xacro:include filename="$(find crane_x7_description)/urdf/crane_x7.urdf.xacro" />
+
+    <xacro:crane_x7 parent_link="base_top_plate_joint" />
+    <xacro:kachaka_base/>
+
+</robot>
