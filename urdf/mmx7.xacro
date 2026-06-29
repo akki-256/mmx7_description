@@ -1,15 +1,15 @@
-<?xml version="1.0" ?>
-<robot name="mmx7" 
-    xmlns:xacro="http://ros.org/wiki/xacro"
-    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-  >
+<?xml version="1.0"?>
+<robot name="mmx7"
+  xmlns:xacro="http://ros.org/wiki/xacro"
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+>
 
   <xacro:include filename="$(find crane_x7_description)/urdf/crane_x7.xacro" />
   <xacro:include filename="$(find kachaka_base_description)/urdf/kachaka_base.xacro" />
 
-  <xacro:macro name="mmx7" 
+  <xacro:macro name="mmx7"
     params="
       parent
       name_link_mounting_plate
@@ -79,108 +79,139 @@
       joint_hand_lower_limit
       joint_hand_upper_limit
       use_d435
-      *origin">
+      *origin"
+  >
 
+    <link name="world" />
 
-    <xacro:crane_x7
-      parent="pedestal_link"
-      name_link_mounting_plate="${NAME_LINK_MOUNTING_PLATE}"
-      name_link_base="${NAME_LINK_BASE}"
-      name_link_1="${NAME_LINK_1}"
-      name_link_2="${NAME_LINK_2}"
-      name_link_3="${NAME_LINK_3}"
-      name_link_4="${NAME_LINK_4}"
-      name_link_5="${NAME_LINK_5}"
-      name_link_6="${NAME_LINK_6}"
-      name_link_7="${NAME_LINK_7}"
-      name_link_cover_2_l="${NAME_LINK_COVER_2_L}"
-      name_link_cover_2_r="${NAME_LINK_COVER_2_R}"
-      name_link_cover_4_l="${NAME_LINK_COVER_4_L}"
-      name_link_cover_4_r="${NAME_LINK_COVER_4_R}"
-      name_link_logo_symbol_l="${NAME_LINK_LOGO_SYMBOL_L}"
-      name_link_logo_symbol_r="${NAME_LINK_LOGO_SYMBOL_R}"
-      name_link_logo_text_l="${NAME_LINK_LOGO_TEXT_L}"
-      name_link_logo_text_r="${NAME_LINK_LOGO_TEXT_R}"
-      name_link_gripper_base="${NAME_LINK_GRIPPER_BASE}"
-      name_link_gripper_finger_a="${NAME_LINK_GRIPPER_FINGER_A}"
-      name_link_gripper_finger_b="${NAME_LINK_GRIPPER_FINGER_B}"
-      name_joint_mounting_plate="${NAME_JOINT_MOUNTING_PLATE}"
-      name_joint_base="${NAME_JOINT_BASE}"
-      name_joint_1="${NAME_JOINT_1}"
-      name_joint_2="${NAME_JOINT_2}"
-      name_joint_3="${NAME_JOINT_3}"
-      name_joint_4="${NAME_JOINT_4}"
-      name_joint_5="${NAME_JOINT_5}"
-      name_joint_6="${NAME_JOINT_6}"
-      name_joint_7="${NAME_JOINT_7}"
-      name_joint_cover_2_l="${NAME_JOINT_COVER_2_L}"
-      name_joint_cover_2_r="${NAME_JOINT_COVER_2_R}"
-      name_joint_cover_4_l="${NAME_JOINT_COVER_4_L}"
-      name_joint_cover_4_r="${NAME_JOINT_COVER_4_R}"
-      name_joint_logo_symbol_l="${NAME_JOINT_LOGO_SYMBOL_L}"
-      name_joint_logo_symbol_r="${NAME_JOINT_LOGO_SYMBOL_R}"
-      name_joint_logo_text_l="${NAME_JOINT_LOGO_TEXT_L}"
-      name_joint_logo_text_r="${NAME_JOINT_LOGO_TEXT_R}"
-      name_joint_gripper_finger_a="${NAME_JOINT_GRIPPER_FINGER_A}"
-      name_joint_gripper_finger_b="${NAME_JOINT_GRIPPER_FINGER_B}"
-      color_link_base="${COLOR_LINK_BASE}"
-      color_link_1="${COLOR_LINK_1}"
-      color_link_cover_2="${COLOR_LINK_COVER_2}"
-      color_link_2="${COLOR_LINK_2}"
-      color_link_3="${COLOR_LINK_3}"
-      color_link_cover_4="${COLOR_LINK_COVER_4}"
-      color_link_4="${COLOR_LINK_4}"
-      color_link_5="${COLOR_LINK_5}"
-      color_link_6="${COLOR_LINK_6}"
-      color_hand="${COLOR_HAND}"
-      joint_velocity_limit="${JOINT_VELOCITY_LIMIT}"
-      joint_1_lower_limit="${JOINT_1_LOWER_LIMIT}"
-      joint_1_upper_limit="${JOINT_1_UPPER_LIMIT}"
-      joint_2_lower_limit="${JOINT_2_LOWER_LIMIT}"
-      joint_2_upper_limit="${JOINT_2_UPPER_LIMIT}"
-      joint_3_lower_limit="${JOINT_3_LOWER_LIMIT}"
-      joint_3_upper_limit="${JOINT_3_UPPER_LIMIT}"
-      joint_4_lower_limit="${JOINT_4_LOWER_LIMIT}"
-      joint_4_upper_limit="${JOINT_4_UPPER_LIMIT}"
-      joint_5_lower_limit="${JOINT_5_LOWER_LIMIT}"
-      joint_5_upper_limit="${JOINT_5_UPPER_LIMIT}"
-      joint_6_lower_limit="${JOINT_6_LOWER_LIMIT}"
-      joint_6_upper_limit="${JOINT_6_UPPER_LIMIT}"
-      joint_7_lower_limit="${JOINT_7_LOWER_LIMIT}"
-      joint_7_upper_limit="${JOINT_7_UPPER_LIMIT}"
-      joint_hand_lower_limit="${JOINT_HAND_LOWER_LIMIT}"
-      joint_hand_upper_limit="${JOINT_HAND_UPPER_LIMIT}"
-      use_d435="$(arg use_d435)">
-      <origin xyz="0 0 0"/>
-    </xacro:crane_x7>
+    <xacro:kachaka_base />
+    <joint name="base_link_to_world_joint" type="fixed">
+      <parent link="world" />
+      <child link="base_link" />
+    </joint>
 
     <link name="pedestal_link">
       <visual>
-        <origin xyz="0 0 -0.182" rpy="0 0 0"/>
-        <geometry><box size="0.310 0.330 0.364" /></geometry>
-        <material name="black"/>
+        <origin xyz="0 0 -0.182" rpy="0 0 0" />
+        <geometry>
+          <box size="0.310 0.330 0.364" />
+        </geometry>
+        <material name="black" />
       </visual>
       <collision>
-        <origin xyz="0 0 -0.182" rpy="0 0 0"/>
-        <geometry><box size="0.310 0.330 0.364" /></geometry>
+        <origin xyz="0 0 -0.182" rpy="0 0 0" />
+        <geometry>
+          <box size="0.310 0.330 0.364" />
+        </geometry>
       </collision>
     </link>
-
     <joint name="kachaka_base_to_pedestal_joint" type='fixed'>
-        <parent link="top_plate_link"/>
-        <child link="pedestal_link"/>
-        <origin xyz="0 -0.0325 0.364" rpy="0 0 0"/>
+      <parent link="top_plate_link" />
+      <child link="pedestal_link" />
+      <origin xyz="0 -0.0325 0.364" rpy="0 0 0" />
     </joint>
 
-    <xacro:kachaka_base/>
-
-    <joint name="base_link_to_world_joint" type="fixed">
-      <parent link="world"/>
-      <child link="base_link"/>
+    <link name="mmx7_mounting_plate">
+      <visual>
+        <origin xyz="0 0 -0.0025" />
+        <geometry>
+          <box size="0.150 0.150 0.005" />
+        </geometry>
+        <material name="silver" />
+      </visual>
+    </link>
+    <joint name="pedestal_link_to_mounting_plate_joint" type="fixed">
+      <parent link="pedestal_link" />
+      <child link="mmx7_mounting_plate" />
+      <origin xyz="0.073 -0.075 0.001" rpy="0 0 0" />
     </joint>
 
-    <link name="world"/>
+
+    <xacro:crane_x7_arm
+      parent="mmx7_mounting_plate"
+      name_link_base="${name_link_base}"
+      name_link_1="${name_link_1}"
+      name_link_2="${name_link_2}"
+      name_link_3="${name_link_3}"
+      name_link_4="${name_link_4}"
+      name_link_5="${name_link_5}"
+      name_link_6="${name_link_6}"
+      name_link_7="${name_link_7}"
+      name_link_cover_2_l="${name_link_cover_2_l}"
+      name_link_cover_2_r="${name_link_cover_2_r}"
+      name_link_cover_4_l="${name_link_cover_4_l}"
+      name_link_cover_4_r="${name_link_cover_4_r}"
+      name_link_logo_symbol_l="${name_link_logo_symbol_l}"
+      name_link_logo_symbol_r="${name_link_logo_symbol_r}"
+      name_link_logo_text_l="${name_link_logo_text_l}"
+      name_link_logo_text_r="${name_link_logo_text_r}"
+      name_joint_base="${name_joint_base}"
+      name_joint_1="${name_joint_1}"
+      name_joint_2="${name_joint_2}"
+      name_joint_3="${name_joint_3}"
+      name_joint_4="${name_joint_4}"
+      name_joint_5="${name_joint_5}"
+      name_joint_6="${name_joint_6}"
+      name_joint_7="${name_joint_7}"
+      name_joint_cover_2_l="${name_joint_cover_2_l}"
+      name_joint_cover_2_r="${name_joint_cover_2_r}"
+      name_joint_cover_4_l="${name_joint_cover_4_l}"
+      name_joint_cover_4_r="${name_joint_cover_4_r}"
+      name_joint_logo_symbol_l="${name_joint_logo_symbol_l}"
+      name_joint_logo_symbol_r="${name_joint_logo_symbol_r}"
+      name_joint_logo_text_l="${name_joint_logo_text_l}"
+      name_joint_logo_text_r="${name_joint_logo_text_r}"
+      color_link_base="${color_link_base}"
+      color_link_1="${color_link_1}"
+      color_link_cover_2="${color_link_cover_2}"
+      color_link_2="${color_link_2}"
+      color_link_3="${color_link_3}"
+      color_link_cover_4="${color_link_cover_4}"
+      color_link_4="${color_link_4}"
+      color_link_5="${color_link_5}"
+      color_link_6="${color_link_6}"
+      joint_velocity_limit="${joint_velocity_limit}"
+      joint_1_lower_limit="${joint_1_lower_limit}"
+      joint_1_upper_limit="${joint_1_upper_limit}"
+      joint_2_lower_limit="${joint_2_lower_limit}"
+      joint_2_upper_limit="${joint_2_upper_limit}"
+      joint_3_lower_limit="${joint_3_lower_limit}"
+      joint_3_upper_limit="${joint_3_upper_limit}"
+      joint_4_lower_limit="${joint_4_lower_limit}"
+      joint_4_upper_limit="${joint_4_upper_limit}"
+      joint_5_lower_limit="${joint_5_lower_limit}"
+      joint_5_upper_limit="${joint_5_upper_limit}"
+      joint_6_lower_limit="${joint_6_lower_limit}"
+      joint_6_upper_limit="${joint_6_upper_limit}"
+      joint_7_lower_limit="${joint_7_lower_limit}"
+      joint_7_upper_limit="${joint_7_upper_limit}">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:crane_x7_arm>
+
+    <!-- RealSense D435 -->
+    <xacro:if value="$(arg use_d435)">
+      <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+      <xacro:sensor_d435
+        parent="${name_link_7}"
+        use_nominal_extrinsics="false"
+        add_plug="false"
+        use_mesh="true">
+        <origin xyz="0.0 0.032 0.0191" rpy="${radians(-90)} ${radians(-90)} 0" />
+      </xacro:sensor_d435>
+    </xacro:if>
+
+
+    <!-- End effector -->
+    <xacro:crane_x7_wide_two_finger_gripper
+      name_link_gripper_base="${name_link_gripper_base}"
+      name_link_gripper_finger_a="${name_link_gripper_finger_a}"
+      name_link_gripper_finger_b="${name_link_gripper_finger_b}"
+      name_joint_gripper_finger_a="${name_joint_gripper_finger_a}"
+      name_joint_gripper_finger_b="${name_joint_gripper_finger_b}"
+      color="${color_hand}"
+      joint_velocity_limit="${joint_velocity_limit}"
+      joint_hand_lower_limit="${joint_hand_lower_limit}"
+      joint_hand_upper_limit="${joint_hand_upper_limit}" />
 
   </xacro:macro>
-
 </robot>
