@@ -157,19 +157,19 @@
     <link name="pedestal_link">
       <visual>
         <origin xyz="0 0 -0.182" rpy="0 0 0"/>
-        <geometry><box size="0.330 0.310 0.364" /></geometry>
+        <geometry><box size="0.310 0.330 0.364" /></geometry>
         <material name="black"/>
       </visual>
       <collision>
         <origin xyz="0 0 -0.182" rpy="0 0 0"/>
-        <geometry><box size="0.330 0.310 0.364" /></geometry>
+        <geometry><box size="0.310 0.330 0.364" /></geometry>
       </collision>
     </link>
 
     <joint name="kachaka_base_to_pedestal_joint" type='fixed'>
         <parent link="top_plate_link"/>
         <child link="pedestal_link"/>
-        <origin xyz="0.0325 0 0.364" rpy="0 0 0"/>
+        <origin xyz="0 -0.0325 0.364" rpy="0 0 0"/>
     </joint>
 
     <xacro:kachaka_base/>
