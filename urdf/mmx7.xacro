@@ -8,6 +8,7 @@
 
   <xacro:include filename="$(find crane_x7_description)/urdf/crane_x7.xacro" />
   <xacro:include filename="$(find kachaka_base_description)/urdf/kachaka_base.xacro" />
+  <!-- <xacro:include filename="$(find orbbec_astra_camera)/urdf/astra.urdf.xacro" /> -->
 
   <xacro:macro name="mmx7"
     params="
@@ -212,6 +213,51 @@
       joint_velocity_limit="${joint_velocity_limit}"
       joint_hand_lower_limit="${joint_hand_lower_limit}"
       joint_hand_upper_limit="${joint_hand_upper_limit}" />
+
+    <link name="orbbec_mounting_branch_link">
+      <visual>
+        <origin xyz="0 0 0.300" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.600" />
+        </geometry>
+        <material name="white" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.300" rpy="0 0 0" />
+        <geometry>
+          <box size="0.03 0.03 0.600" />
+        </geometry>s </collision>
+    </link>
+    <joint name="pedestal_to_orbbec_mounting_branch_joint" type="fixed">
+      <parent link="pedestal_link" />
+      <child link="orbbec_mounting_branch_link" />
+      <origin xyz="0.010 0.085 -0.003" rpy="0 0 0" />
+    </joint>
+
+    <link name="orbbec_mounting_box_link">
+      <visual>
+        <origin xyz="0 0 -0.035" rpy="0 0 0" />
+        <geometry>
+          <box size="0.050 0.060 0.070" />
+        </geometry>
+        <material name="black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 -0.035" rpy="0 0 0" />
+        <geometry>
+          <box size="0.050 0.060 0.070" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="orbbec_mounting_branch_to_orbbec_mounting_box_joint" type="fixed">
+      <parent link="orbbec_mounting_branch_link" />
+      <child link="orbbec_mounting_box_link" />
+      <origin xyz="0.040 0 0.600" rpy="0 0 0" />
+    </joint>
+    <!-- 
+    <xacro:astra parent="orbbec_mounting_box_link">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:astra> -->
 
   </xacro:macro>
 </robot>
