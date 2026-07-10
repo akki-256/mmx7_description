@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="orbbec_mounter" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="orbbec_mounter">
+        <link name="orbbec_mounter_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.048 0.120 0.050" />
+                    <material name="black"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.048 0.120 0.050" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+</robot>

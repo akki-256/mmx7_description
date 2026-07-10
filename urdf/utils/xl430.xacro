@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="xl430" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="xl430">
+        <link name="xl430_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0465 0.038 0.038" />
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.0465 0.038 0.038" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+</robot>

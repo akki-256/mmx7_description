@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot name="calibration_camera_mounter" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find mmx7_description)/urdf/utils/xl430.xacro" />
+    <xacro:include filename="$(find mmx7_description)/urdf/utils/micon_xl430_mounter.xacro" />
+    <xacro:include filename="$(find mmx7_description)/urdf/utils/orbbec_mounter.xacro" />
+    <xacro:include filename="$(find orbbec_description)/urdf/gemini_335_L_336_L.urdf.xacro" />
+
+    <xacro:macro name="calibration_camera_mounter">
+        <link name="vertical_branch_link">
+            <visual>
+                <origin xyz="0 0 0.300" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.03 0.600" />
+                </geometry>
+                <material name="white" />
+            </visual>
+            <collision>
+                <origin xyz="0 0 0.300" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.03 0.600" />
+                </geometry>
+            </collision>
+        </link>
+        <!-- <joint name="pedestal_to_orbbec_mounting_branch_joint" type="fixed">
+            <parent link="pedestal_link" />
+            <child link="vertical_branch_link" />
+            <origin xyz="0.010 0.085 -0.003" rpy="0 0 0" />
+        </joint> -->
+
+        <xacro:micon_xl430_mounter />
+        <joint name="branch_to_micon_xl430_joint" type="fixed">
+            <parent link="vertical_branch_link" />
+            <child link="micon_2xl430_mounter_link" />
+            <origin xyz="0.015 0 0.600" rpy="0 0 0" />
+        </joint>
+
+        <xacro:xl430 />
+        <joint name="micon_xl430_mounter_to_xl430_joint" type="fixed">
+            <parent link="micon_2xl430_mounter_link" />
+            <child link="xl430_link" />
+            <origin xyz="0.050 0 0.019" />
+        </joint>
+
+        <xacro:orbbec_mounter />
+        <joint name="xl430_to_orbbec_mounter_joint" type="fixed">
+            <parent link="xl430_link" />
+            <child link="orbbec_mounter_link" />
+            <origin xyz="0.024 0 0.013" />
+        </joint>
+
+        <joint name="orbbec_mounter_to_orbbec_joint" type="fixed">
+            <parent link="orbbec_mounter_link" />
+            <child link="camera_link" />
+            <origin xyz="0.046915 0.0475 0.015" rpy="0 0 0" />
+        </joint>
+
+    </xacro:macro>
+</robot>
