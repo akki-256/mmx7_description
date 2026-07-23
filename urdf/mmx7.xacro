@@ -96,14 +96,14 @@
       <visual>
         <origin xyz="0 0 -0.182" rpy="0 0 0" />
         <geometry>
-          <box size="0.310 0.330 0.364" />
+          <box size="0.310 0.327 0.364" />
         </geometry>
         <material name="black" />
       </visual>
       <collision>
         <origin xyz="0 0 -0.182" rpy="0 0 0" />
         <geometry>
-          <box size="0.310 0.330 0.364" />
+          <box size="0.310 0.327 0.364" />
         </geometry>
       </collision>
     </link>
@@ -131,7 +131,7 @@
     <joint name="pedestal_link_to_mounting_plate_joint" type="fixed">
       <parent link="pedestal_link" />
       <child link="mmx7_mounting_plate" />
-      <origin xyz="0.073 -0.075 0.001" rpy="0 0 0" />
+      <origin xyz="0.073 -0.045 0.001" rpy="0 0 0" />
     </joint>
 
 
@@ -227,7 +227,7 @@
     <joint name="pedestal_to_orbbec_mounting_branch_joint" type="fixed">
       <parent link="pedestal_link" />
       <child link="vertical_branch_link" />
-      <origin xyz="0.010 0.085 -0.003" rpy="0 0 0" />
+      <origin xyz="0.005 0.0835 -0.003" rpy="0 0 0" />
     </joint>
 
     <!-- <link name="orbbec_mounting_branch_link">
