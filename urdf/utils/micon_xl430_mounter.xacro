@@ -2,7 +2,6 @@
 <robot name="micon_xl430_mounter" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:macro name="micon_xl430_mounter">
-        <!-- マウンタの下に設置されたマイコンも一つのマウンタとして宣言する -->
         <link name="micon_2xl430_mounter_link">
             <visual>
                 <origin xyz="0.025 0 -0.035" rpy="0 0 0" />

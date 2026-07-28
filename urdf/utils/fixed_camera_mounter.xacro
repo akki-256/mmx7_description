@@ -21,11 +21,6 @@
                 </geometry>
             </collision>
         </link>
-        <!-- <joint name="pedestal_to_orbbec_mounting_branch_joint" type="fixed">
-            <parent link="pedestal_link" />
-            <child link="vertical_branch_link" />
-            <origin xyz="0.010 0.085 -0.003" rpy="0 0 0" />
-        </joint> -->
 
         <xacro:micon_xl430_mounter />
         <joint name="branch_to_micon_xl430_joint" type="fixed">
