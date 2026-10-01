@@ -30,7 +30,7 @@
         </joint>
 
         <xacro:xl430 />
-        <joint name="micon_xl430_mounter_to_xl430_joint" type="revolute">
+        <joint name="micon_xl430_mounter_to_xl430_joint" type="fixed">
             <parent link="micon_2xl430_mounter_link" />
             <child link="xl430_link" />
             <origin xyz="0.050 0 0.019" />
@@ -39,7 +39,7 @@
         </joint>
 
         <xacro:orbbec_mounter />
-        <joint name="xl430_to_orbbec_mounter_joint" type="revolute">
+        <joint name="xl430_to_orbbec_mounter_joint" type="fixed">
             <parent link="xl430_link" />
             <child link="orbbec_mounter_link" />
             <origin xyz="0.024 0 0.013" />
