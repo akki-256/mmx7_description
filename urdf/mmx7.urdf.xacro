@@ -21,8 +21,8 @@
     <xacro:arg name="timeout_seconds" default="1.0" />
     <xacro:arg name="manipulator_config_file_path" default="" />
     <xacro:arg name="manipulator_links_file_path" default="" />
-    <xacro:arg name="gz_control_config_package" default="" />
-    <xacro:arg name="gz_control_config_file_path" default="" />
+    <xacro:arg name="gz_control_config_package" default="crane_x7_control" />
+    <xacro:arg name="gz_control_config_file_path" default="config/crane_x7_controllers.yaml" />
 
     <xacro:property name="M_PI" value="3.14159"/>
 
