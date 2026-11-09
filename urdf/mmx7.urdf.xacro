@@ -14,7 +14,7 @@
   <!-- Include the Crane X7 generator macro -->
 
     <xacro:arg name="use_gazebo" default="false" />
-    <xacro:arg name="use_d435" default="false" />
+    <xacro:arg name="use_d435" default="true" />
     <xacro:arg name="use_mock_components" default="false" />
     <xacro:arg name="port_name" default="/dev/ttyUSB0" />
     <xacro:arg name="baudrate" default="3000000" />
