@@ -10,7 +10,7 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>xacro</depend>
-  <depend>crane_description</depend>
+  <depend>crane_x7_description</depend>
   <depend>kachaka_base_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
